@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PACK RP - Игровой проект</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Основные стили */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #1a1a2e;
+            --secondary: #16213e;
+            --accent: #f05454;
+            --accent-light: #ff7b7b;
+            --light: #e6e6e6;
+            --gray: #8a8a8a;
+            --dark: #0f0f1a;
+            --discord: #5865F2;
+            --discord-hover: #4752c4;
+        }
+
+        body {
+            background-color: var(--primary);
+            color: var(--light);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        /* Шапка */
+        header {
+            background-color: rgba(10, 10, 20, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo h1 {
+            font-size: 28px;
+            background: linear-gradient(to right, var(--accent), var(--accent-light));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: 1px;
+        }
+
+        .logo-icon {
+            color: var(--accent);
+            font-size: 32px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 17px;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            left: 0;
+            bottom: -5px;
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .cta-button {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            background-color: var(--accent-light);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(240, 84, 84, 0.3);
+        }
+
+        .discord-button {
+            background-color: var(--discord);
+        }
+
+        .discord-button:hover {
+            background-color: var(--discord-hover);
+            box-shadow: 0 10px 20px rgba(88, 101, 242, 0.3);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Главный баннер */
+        .hero {
+            background: linear-gradient(rgba(10, 10, 20, 0.9), rgba(10, 10, 20, 0.9)), 
+                        url('https://images.unsplash.com/photo-1534423861386-85a16f5d13fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            padding-top: 80px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h2 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            color: var(--gray);
+        }
+
+        .highlight {
+            color: var(--accent);
+        }
+
+        /* Разделы */
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 4px;
+            background: var(--accent);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        /* Особенности */
+        .features {
+            background-color: var(--secondary);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .feature-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 40px 30px;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border-color: var(--accent);
+        }
+
+        .feature-icon {
+            font-size: 50px;
+            color: var(--accent);
+            margin-bottom: 25px;
+        }
+
+        .feature-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        /* Как начать играть */
+        .steps-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .step-number {
+            background-color: var(--accent);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            font-weight: 700;
+            margin-right: 30px;
+            flex-shrink: 0;
+        }
+
+        .step-content {
+            flex-grow: 1;
+        }
+
+        .step-content h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: var(--accent);
+        }
+
+        .step-content p {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: var(--light);
+        }
+
+        .step-note {
+            background-color: rgba(88, 101, 242, 0.1);
+            border-left: 4px solid var(--discord);
+            padding: 15px 20px;
+            margin-top: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .step-note i {
+            color: var(--discord);
+            margin-right: 10px;
+        }
+
+        .discord-step {
+            border-left: 4px solid var(--discord);
+        }
+
+        /* Футер */
+        footer {
+            background-color: var(--dark);
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 22px;
+            margin-bottom: 25px;
+            color: var(--accent);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            color: var(--gray);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--light);
+            font-size: 18px;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--gray);
+            font-size: 14px;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 992px) {
+            .hero h2 {
+                font-size: 40px;
+            }
+            
+            .section-title {
+                font-size: 32px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background-color: var(--primary);
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+                gap: 0;
+                transform: translateY(-100%);
+                opacity: 0;
+                transition: all 0.3s;
+                box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+                z-index: 999;
+            }
+            
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            
+            .nav-links li {
+                width: 100%;
+                text-align: center;
+                padding: 15px 0;
+            }
+            
+            .hero h2 {
+                font-size: 32px;
+            }
+            
+            .step {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .step-number {
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h2 {
+                font-size: 28px;
+            }
+            
+            .section-title {
+                font-size: 28px;
+            }
+            
+            section {
+                padding: 60px 0;
+            }
+            
+            .step-content h3 {
+                font-size: 20px;
+            }
+            
+            .step-content p {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <i class="fas fa-cube logo-icon"></i>
+                    <h1>PACK RP</h1>
+                </div>
+                
+                <ul class="nav-links">
+                    <li><a href="#home">Главная</a></li>
+                    <li><a href="#features">Особенности</a></li>
+                    <li><a href="#how-to-start">Как начать</a></li>
+                    <li><a href="#connect">Подключиться</a></li>
+                </ul>
+                
+                <div class="menu-toggle" id="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+                
+                <a href="https://discord.gg/C9gEVP5qrF" target="_blank" class="cta-button discord-button">
+                    <i class="fab fa-discord"></i> Присоединиться
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Главный баннер -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Добро пожаловать в <span class="highlight">PACK RP</span></h2>
+                <p>Лучший ролевой проект с уникальной экономикой, глубоким отыгрышем и активным комьюнити. Присоединяйся к тысячам игроков и начни свою историю в нашем мире!</p>
+                <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                    <a href="#how-to-start" class="cta-button">Начать играть</a>
+                    <a href="https://discord.gg/C9gEVP5qrF" target="_blank" class="cta-button discord-button">
+                        <i class="fab fa-discord"></i> Наш Discord
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Особенности -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="section-title">Особенности проекта</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-users feature-icon"></i>
+                    <h3>Активное комьюнити</h3>
+                    <p>Дружелюбное сообщество игроков, готовое помочь новичкам и поддержать интересную игру.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <i class="fas fa-chart-line feature-icon"></i>
+                    <h3>Уникальная экономика</h3>
+                    <p>Сбалансированная система заработка, бизнесы и динамичный рынок.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <i class="fas fa-gavel feature-icon"></i>
+                    <h3>Правовая система</h3>
+                    <p>Реалистичные госструктуры: полиция, EMS, суд, адвокаты и тюремная система.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <i class="fas fa-home feature-icon"></i>
+                    <h3>Недвижимость</h3>
+                    <p>Покупка и аренда домов, квартир, гаражей и коммерческой недвижимости.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <i class="fas fa-car feature-icon"></i>
+                    <h3>Транспорт</h3>
+                    <p>Большой выбор моделей автомобилей, тюнинг, страховка и система угонов.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <i class="fas fa-user-md feature-icon"></i>
+                    <h3>Профессии</h3>
+                    <p>Разнообразные профессии от таксиста до владельца бизнеса или члена банды.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Как начать играть -->
+    <section id="how-to-start">
+        <div class="container">
+            <h2 class="section-title">Как начать играть</h2>
+            <div class="steps-container">
+                <div class="step discord-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Присоединяйтесь к нашему Discord</h3>
+                        <p>Чтобы начать играть с нами вам нужен Discord. Зарегистрируйтесь, если у вас его еще нет.</p>
+                        
+                        <div class="step-note">
+                            <p><i class="fab fa-discord"></i> <strong>Важно:</strong> Discord обязателен для игры на нашем проекте. Там вы найдете всю необходимую информацию, поддержку и общение с комьюнити.</p>
+                        </div>
+                        
+                        <div style="margin-top: 20px;">
+                            <a href="https://discord.gg/C9gEVP5qrF" target="_blank" class="cta-button discord-button" style="font-size: 18px; padding: 15px 30px;">
+                                <i class="fab fa-discord"></i> Присоединиться к Discord
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Найдите инструкцию по подключению</h3>
+                        <p>После входа в наш Discord сервер найдите канал "как-подключиться" или "инструкции".</p>
+                        
+                        <div class="step-note">
+                            <p><i class="fas fa-info-circle"></i> <strong>Подсказка:</strong> Канал обычно находится в разделе "информация" или "важно". Там вы найдете подробную инструкцию по установке и настройке.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Скачайте и установите необходимые файлы</h3>
+                        <p>Следуйте инструкции в Discord канале, чтобы скачать и установить все необходимые файлы для игры.</p>
+                        
+                        <div class="step-note">
+                            <p><i class="fas fa-download"></i> <strong>Внимание:</strong> Убедитесь, что у вас достаточно свободного места на диске для установки.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Запустите игру и создайте персонажа</h3>
+                        <p>После установки всех необходимых файлов запустите игру, подключитесь к серверу и создайте своего уникального персонажа.</p>
+                        
+                        <div class="step-note">
+                            <p><i class="fas fa-gamepad"></i> <strong>Удачи!</strong> Теперь вы готовы начать свою историю в мире PACK RP. Не стесняйтесь задавать вопросы в Discord, если возникнут трудности.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 50px;">
+                <h3 style="margin-bottom: 20px; font-size: 24px;">Все еще есть вопросы?</h3>
+                <p style="font-size: 18px; margin-bottom: 30px; max-width: 700px; margin-left: auto; margin-right: auto;">
+                    Присоединяйтесь к нашему Discord серверу, где администрация и опытные игроки помогут вам с подключением и ответят на все ваши вопросы.
+                </p>
+                <a href="https://discord.gg/C9gEVP5qrF" target="_blank" class="cta-button discord-button" style="font-size: 20px; padding: 18px 40px;">
+                    <i class="fab fa-discord"></i> Присоединиться к Discord
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Подключиться -->
+    <section id="connect">
+        <div class="container">
+            <h2 class="section-title">Подключиться к проекту</h2>
+            <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+                <p style="font-size: 20px; margin-bottom: 40px;">Следуйте инструкции выше, чтобы присоединиться к нашему Discord и получить доступ к проекту. Все обновления и новости публикуются в Discord!</p>
+                
+                <div style="background-color: rgba(255, 255, 255, 0.05); padding: 30px; border-radius: 15px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 40px;">
+                    <h3 style="margin-bottom: 20px; color: var(--accent);">Основные шаги</h3>
+                    <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 30px; text-align: left;">
+                        <div>
+                            <h4 style="color: var(--discord); margin-bottom: 10px; display: flex; align-items: center;">
+                                <i class="fab fa-discord" style="margin-right: 10px;"></i> Шаг 1
+                            </h4>
+                            <p>Присоединитесь к нашему Discord серверу</p>
+                        </div>
+                        <div>
+                            <h4 style="color: var(--accent); margin-bottom: 10px; display: flex; align-items: center;">
+                                <i class="fas fa-search" style="margin-right: 10px;"></i> Шаг 2
+                            </h4>
+                            <p>Найдите канал с инструкциями по подключению</p>
+                        </div>
+                        <div>
+                            <h4 style="color: var(--accent-light); margin-bottom: 10px; display: flex; align-items: center;">
+                                <i class="fas fa-download" style="margin-right: 10px;"></i> Шаг 3
+                            </h4>
+                            <p>Скачайте и установите необходимые файлы</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                    <a href="https://discord.gg/C9gEVP5qrF" target="_blank" class="cta-button discord-button" style="font-size: 18px; padding: 15px 35px;">
+                        <i class="fab fa-discord"></i> Присоединиться к Discord
+                    </a>
+                    <a href="#how-to-start" class="cta-button" style="background-color: transparent; border: 2px solid var(--accent); font-size: 18px; padding: 15px 35px;">
+                        <i class="fas fa-arrow-up"></i> Вернуться к инструкции
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>PACK RP</h3>
+                    <p>Лучший ролевой проект. Глубокий отыгрыш, уникальная экономика и активное комьюнити.</p>
+                    <div class="social-links">
+                        <a href="https://discord.gg/C9gEVP5qrF" target="_blank"><i class="fab fa-discord"></i></a>
+                        <a href="#"><i class="fab fa-vk"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Быстрые ссылки</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Главная</a></li>
+                        <li><a href="#features">Особенности</a></li>
+                        <li><a href="#how-to-start">Как начать</a></li>
+                        <li><a href="#connect">Подключиться</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Ресурсы</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://discord.gg/C9gEVP5qrF" target="_blank">Discord сервер</a></li>
+                        <li><a href="#how-to-start">Инструкция по подключению</a></li>
+                        <li><a href="#">Правила проекта</a></li>
+                        <li><a href="#">Новости и обновления</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 PACK RP. Все права защищены.</p>
+                <p style="margin-top: 10px;">Это независимый игровой проект, созданный энтузиастами.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Мобильное меню
+        const menuToggle = document.getElementById('menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            menuToggle.querySelector('i').classList.toggle('fa-bars');
+            menuToggle.querySelector('i').classList.toggle('fa-times');
+        });
+        
+        // Закрытие меню при клике на ссылку
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                menuToggle.querySelector('i').classList.add('fa-bars');
+                menuToggle.querySelector('i').classList.remove('fa-times');
+            });
+        });
+        
+        // Плавная прокрутка
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Выделение Discord ссылок
+        document.querySelectorAll('a[href*="discord"]').forEach(link => {
+            link.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-3px) scale(1.05)';
+            });
+            
+            link.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
