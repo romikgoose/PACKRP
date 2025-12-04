@@ -24,6 +24,8 @@
             --dark: #0f0f1a;
             --discord: #5865F2;
             --discord-hover: #4752c4;
+            --download: #4CAF50;
+            --download-hover: #45a049;
         }
 
         body {
@@ -131,6 +133,16 @@
             background-color: var(--accent-light);
             transform: translateY(-3px);
             box-shadow: 0 10px 20px rgba(240, 84, 84, 0.3);
+        }
+
+        .download-button {
+            background-color: var(--download);
+        }
+
+        .download-button:hover {
+            background-color: var(--download-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(76, 175, 80, 0.3);
         }
 
         .discord-button {
@@ -248,56 +260,87 @@
         .step {
             display: flex;
             align-items: flex-start;
-            margin-bottom: 50px;
+            margin-bottom: 40px;
             position: relative;
         }
 
         .step-number {
             background-color: var(--accent);
             color: white;
-            width: 60px;
-            height: 60px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 28px;
+            font-size: 24px;
             font-weight: 700;
-            margin-right: 30px;
+            margin-right: 25px;
             flex-shrink: 0;
         }
 
         .step-content {
             flex-grow: 1;
+            padding-top: 5px;
         }
 
         .step-content h3 {
-            font-size: 24px;
-            margin-bottom: 10px;
+            font-size: 22px;
+            margin-bottom: 8px;
             color: var(--accent);
         }
 
         .step-content p {
             font-size: 18px;
-            margin-bottom: 15px;
             color: var(--light);
         }
 
-        .step-note {
-            background-color: rgba(88, 101, 242, 0.1);
-            border-left: 4px solid var(--discord);
+        .download-section {
+            text-align: center;
+            margin: 50px 0;
+            padding: 40px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .download-section h3 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+
+        .download-section p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            color: var(--gray);
+        }
+
+        .file-size {
+            display: inline-block;
+            background-color: rgba(76, 175, 80, 0.2);
+            color: var(--download);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            margin-top: 10px;
+            font-weight: 600;
+        }
+
+        .instruction-note {
+            background-color: rgba(240, 84, 84, 0.1);
+            border-left: 4px solid var(--accent);
             padding: 15px 20px;
-            margin-top: 15px;
+            margin-top: 30px;
             border-radius: 0 8px 8px 0;
         }
 
-        .step-note i {
-            color: var(--discord);
+        .instruction-note i {
+            color: var(--accent);
             margin-right: 10px;
-        }
-
-        .discord-step {
-            border-left: 4px solid var(--discord);
         }
 
         /* Футер */
@@ -424,7 +467,11 @@
             
             .step-number {
                 margin-right: 0;
-                margin-bottom: 20px;
+                margin-bottom: 15px;
+            }
+            
+            .download-section {
+                padding: 30px 20px;
             }
         }
 
@@ -447,6 +494,10 @@
             
             .step-content p {
                 font-size: 16px;
+            }
+            
+            .download-section h3 {
+                font-size: 24px;
             }
         }
     </style>
@@ -472,8 +523,8 @@
                     <i class="fas fa-bars"></i>
                 </div>
                 
-                <a href="https://discord.gg/C9gEVP5qrF" target="_blank" class="cta-button discord-button">
-                    <i class="fab fa-discord"></i> Присоединиться
+                <a href="https://drive.google.com/file/d/1sO6BONQVUWkYHDCoPsLCvFu04Ydvck8g/view" target="_blank" class="cta-button download-button">
+                    <i class="fas fa-download"></i> Скачать игру
                 </a>
             </nav>
         </div>
@@ -487,8 +538,8 @@
                 <p>Лучший ролевой проект с уникальной экономикой, глубоким отыгрышем и активным комьюнити. Присоединяйся к тысячам игроков и начни свою историю в нашем мире!</p>
                 <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
                     <a href="#how-to-start" class="cta-button">Начать играть</a>
-                    <a href="https://discord.gg/C9gEVP5qrF" target="_blank" class="cta-button discord-button">
-                        <i class="fab fa-discord"></i> Наш Discord
+                    <a href="https://drive.google.com/file/d/1sO6BONQVUWkYHDCoPsLCvFu04Ydvck8g/view" target="_blank" class="cta-button download-button">
+                        <i class="fas fa-download"></i> Скачать игру
                     </a>
                 </div>
             </div>
@@ -543,70 +594,56 @@
     <section id="how-to-start">
         <div class="container">
             <h2 class="section-title">Как начать играть</h2>
+            
+            <div class="download-section">
+                <h3>Скачайте игру PACK RP</h3>
+                <p>Для начала игры вам нужно скачать клиент проекта. Просто нажмите кнопку ниже чтобы начать загрузку.</p>
+                
+                <a href="https://drive.google.com/file/d/1sO6BONQVUWkYHDCoPsLCvFu04Ydvck8g/view" target="_blank" class="cta-button download-button" style="font-size: 20px; padding: 18px 40px;">
+                    <i class="fas fa-download"></i> Скачать игру PACK RP
+                </a>
+                
+                <div class="file-size">
+                    <i class="fas fa-hdd"></i> Размер: ~5-10 GB
+                </div>
+            </div>
+            
             <div class="steps-container">
-                <div class="step discord-step">
+                <div class="step">
                     <div class="step-number">1</div>
                     <div class="step-content">
-                        <h3>Присоединяйтесь к нашему Discord</h3>
-                        <p>Чтобы начать играть с нами вам нужен Discord. Зарегистрируйтесь, если у вас его еще нет.</p>
-                        
-                        <div class="step-note">
-                            <p><i class="fab fa-discord"></i> <strong>Важно:</strong> Discord обязателен для игры на нашем проекте. Там вы найдете всю необходимую информацию, поддержку и общение с комьюнити.</p>
-                        </div>
-                        
-                        <div style="margin-top: 20px;">
-                            <a href="https://discord.gg/C9gEVP5qrF" target="_blank" class="cta-button discord-button" style="font-size: 18px; padding: 15px 30px;">
-                                <i class="fab fa-discord"></i> Присоединиться к Discord
-                            </a>
-                        </div>
+                        <h3>Скачайте игру</h3>
+                        <p>Нажмите кнопку выше чтобы скачать архив с игрой на ваш компьютер.</p>
                     </div>
                 </div>
                 
                 <div class="step">
                     <div class="step-number">2</div>
                     <div class="step-content">
-                        <h3>Найдите инструкцию по подключению</h3>
-                        <p>После входа в наш Discord сервер найдите канал "как-подключиться" или "инструкции".</p>
-                        
-                        <div class="step-note">
-                            <p><i class="fas fa-info-circle"></i> <strong>Подсказка:</strong> Канал обычно находится в разделе "информация" или "важно". Там вы найдете подробную инструкцию по установке и настройке.</p>
-                        </div>
+                        <h3>Распакуйте архив на рабочий стол</h3>
+                        <p>После загрузки распакуйте архив с помощью WinRAR или 7-Zip прямо на рабочий стол.</p>
                     </div>
                 </div>
                 
                 <div class="step">
                     <div class="step-number">3</div>
                     <div class="step-content">
-                        <h3>Скачайте и установите необходимые файлы</h3>
-                        <p>Следуйте инструкции в Discord канале, чтобы скачать и установить все необходимые файлы для игры.</p>
-                        
-                        <div class="step-note">
-                            <p><i class="fas fa-download"></i> <strong>Внимание:</strong> Убедитесь, что у вас достаточно свободного места на диске для установки.</p>
-                        </div>
+                        <h3>Зайдите в папку и запустите файл PACK RP</h3>
+                        <p>Откройте распакованную папку и запустите файл "PACK RP.exe" чтобы начать игру.</p>
                     </div>
                 </div>
                 
                 <div class="step">
                     <div class="step-number">4</div>
                     <div class="step-content">
-                        <h3>Запустите игру и создайте персонажа</h3>
-                        <p>После установки всех необходимых файлов запустите игру, подключитесь к серверу и создайте своего уникального персонажа.</p>
-                        
-                        <div class="step-note">
-                            <p><i class="fas fa-gamepad"></i> <strong>Удачи!</strong> Теперь вы готовы начать свою историю в мире PACK RP. Не стесняйтесь задавать вопросы в Discord, если возникнут трудности.</p>
-                        </div>
+                        <h3>Зарегистрируйтесь и играйте</h3>
+                        <p>При первом запуске создайте аккаунт, пройдите обучение и начните свою историю в мире PACK RP!</p>
                     </div>
                 </div>
             </div>
             
-            <div style="text-align: center; margin-top: 50px;">
-                <h3 style="margin-bottom: 20px; font-size: 24px;">Все еще есть вопросы?</h3>
-                <p style="font-size: 18px; margin-bottom: 30px; max-width: 700px; margin-left: auto; margin-right: auto;">
-                    Присоединяйтесь к нашему Discord серверу, где администрация и опытные игроки помогут вам с подключением и ответят на все ваши вопросы.
-                </p>
-                <a href="https://discord.gg/C9gEVP5qrF" target="_blank" class="cta-button discord-button" style="font-size: 20px; padding: 18px 40px;">
-                    <i class="fab fa-discord"></i> Присоединиться к Discord
-                </a>
+            <div class="instruction-note">
+                <p><i class="fas fa-exclamation-triangle"></i> <strong>Важно:</strong> Убедитесь, что у вас достаточно свободного места на диске (рекомендуется не менее 15 GB). Антивирус может временно заблокировать файлы игры - добавьте папку с игрой в исключения.</p>
             </div>
         </div>
     </section>
@@ -614,40 +651,40 @@
     <!-- Подключиться -->
     <section id="connect">
         <div class="container">
-            <h2 class="section-title">Подключиться к проекту</h2>
+            <h2 class="section-title">Нужна помощь?</h2>
             <div style="text-align: center; max-width: 800px; margin: 0 auto;">
-                <p style="font-size: 20px; margin-bottom: 40px;">Следуйте инструкции выше, чтобы присоединиться к нашему Discord и получить доступ к проекту. Все обновления и новости публикуются в Discord!</p>
+                <p style="font-size: 20px; margin-bottom: 40px;">Если у вас возникли проблемы со скачиванием или запуском игры, присоединяйтесь к нашему Discord серверу, где администрация и опытные игроки помогут вам с подключением.</p>
                 
                 <div style="background-color: rgba(255, 255, 255, 0.05); padding: 30px; border-radius: 15px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 40px;">
-                    <h3 style="margin-bottom: 20px; color: var(--accent);">Основные шаги</h3>
+                    <h3 style="margin-bottom: 20px; color: var(--accent);">Возникли проблемы?</h3>
                     <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 30px; text-align: left;">
                         <div>
-                            <h4 style="color: var(--discord); margin-bottom: 10px; display: flex; align-items: center;">
-                                <i class="fab fa-discord" style="margin-right: 10px;"></i> Шаг 1
+                            <h4 style="color: var(--accent); margin-bottom: 10px; display: flex; align-items: center;">
+                                <i class="fas fa-download" style="margin-right: 10px;"></i> Не скачивается
                             </h4>
-                            <p>Присоединитесь к нашему Discord серверу</p>
+                            <p>Проверьте интернет-соединение и место на диске</p>
                         </div>
                         <div>
                             <h4 style="color: var(--accent); margin-bottom: 10px; display: flex; align-items: center;">
-                                <i class="fas fa-search" style="margin-right: 10px;"></i> Шаг 2
+                                <i class="fas fa-exclamation-triangle" style="margin-right: 10px;"></i> Антивирус блокирует
                             </h4>
-                            <p>Найдите канал с инструкциями по подключению</p>
+                            <p>Добавьте папку с игрой в исключения антивируса</p>
                         </div>
                         <div>
-                            <h4 style="color: var(--accent-light); margin-bottom: 10px; display: flex; align-items: center;">
-                                <i class="fas fa-download" style="margin-right: 10px;"></i> Шаг 3
+                            <h4 style="color: var(--accent); margin-bottom: 10px; display: flex; align-items: center;">
+                                <i class="fas fa-question-circle" style="margin-right: 10px;"></i> Другие вопросы
                             </h4>
-                            <p>Скачайте и установите необходимые файлы</p>
+                            <p>Присоединяйтесь к Discord для получения помощи</p>
                         </div>
                     </div>
                 </div>
                 
                 <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
-                    <a href="https://discord.gg/C9gEVP5qrF" target="_blank" class="cta-button discord-button" style="font-size: 18px; padding: 15px 35px;">
-                        <i class="fab fa-discord"></i> Присоединиться к Discord
+                    <a href="https://drive.google.com/file/d/1sO6BONQVUWkYHDCoPsLCvFu04Ydvck8g/view" target="_blank" class="cta-button download-button" style="font-size: 18px; padding: 15px 35px;">
+                        <i class="fas fa-download"></i> Скачать игру
                     </a>
-                    <a href="#how-to-start" class="cta-button" style="background-color: transparent; border: 2px solid var(--accent); font-size: 18px; padding: 15px 35px;">
-                        <i class="fas fa-arrow-up"></i> Вернуться к инструкции
+                    <a href="https://discord.gg/C9gEVP5qrF" target="_blank" class="cta-button discord-button" style="font-size: 18px; padding: 15px 35px;">
+                        <i class="fab fa-discord"></i> Наш Discord
                     </a>
                 </div>
             </div>
@@ -674,18 +711,18 @@
                     <ul class="footer-links">
                         <li><a href="#home">Главная</a></li>
                         <li><a href="#features">Особенности</a></li>
-                        <li><a href="#how-to-start">Как начать</a></li>
-                        <li><a href="#connect">Подключиться</a></li>
+                        <li><a href="#how-to-start">Скачать игру</a></li>
+                        <li><a href="#connect">Помощь</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-column">
                     <h3>Ресурсы</h3>
                     <ul class="footer-links">
+                        <li><a href="https://drive.google.com/file/d/1sO6BONQVUWkYHDCoPsLCvFu04Ydvck8g/view" target="_blank">Скачать игру</a></li>
                         <li><a href="https://discord.gg/C9gEVP5qrF" target="_blank">Discord сервер</a></li>
-                        <li><a href="#how-to-start">Инструкция по подключению</a></li>
+                        <li><a href="#how-to-start">Инструкция по установке</a></li>
                         <li><a href="#">Правила проекта</a></li>
-                        <li><a href="#">Новости и обновления</a></li>
                     </ul>
                 </div>
             </div>
@@ -735,8 +772,8 @@
             });
         });
         
-        // Выделение Discord ссылок
-        document.querySelectorAll('a[href*="discord"]').forEach(link => {
+        // Выделение кнопок скачивания
+        document.querySelectorAll('a[href*="drive.google.com"]').forEach(link => {
             link.addEventListener('mouseenter', function() {
                 this.style.transform = 'translateY(-3px) scale(1.05)';
             });
